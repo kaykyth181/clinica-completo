@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pacientes Cadastrados - Saúde +</title>
+
+    <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            color: #333;
+            margin: 0;
+            padding: 20px;
+        }
+
+        h1 {
+            text-align: center;
+            color: #00b7ff;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: auto;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .paciente {
+            border-bottom: 1px solid #ccc;
+            padding: 10px;
+        }
+
+        .paciente:last-child {
+            border-bottom: none;
+        }
+
+        .button-group {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 20px;
+        }
+
+        button {
+            padding: 10px 15px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            background-color: #00b7ff;
+            color: white;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+        button:hover {
+            background-color: rgb(31, 140, 204);
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>Pacientes Cadastrados</h1>
+    <div class="container" id="pacientesList"></div>
+
+    <div class="button-group">
+        <button type="button" onclick="window.history.back()">Voltar</button>
+        <button type="button" onclick="limparPacientes()">Limpar Todos</button>
+    </div>
+
+    <script>
+        // Recupera os pacientes armazenados
+        const historico = JSON.parse(localStorage.getItem('historicoPacientes')) || [];
+        const lista = document.getElementById('pacientesList');
+
+        if (historico.length > 0) {
+            historico.forEach(paciente => {
+                const div = document.createElement('div');
+                div.classList.add('paciente');
+                div.innerHTML = `
+                    <p><strong>Nome:</strong> ${paciente.nome}</p>
+                    <p><strong>Idade:</strong> ${paciente.idade}</p>
+                    <p><strong>Sexo:</strong> ${paciente.sexo}</p>
+                    <p><strong>Endereço:</strong> ${paciente.endereco}</p>
+                    <p><strong>CEP:</strong> ${paciente.cep}</p>
+                    <p><strong>Telefone:</strong> ${paciente.telefone}</p>
+                    <p><strong>E-mail:</strong> ${paciente.email}</p>
+                    <p><strong>Serviço:</strong> ${paciente.servico}</p>
+                    <p><strong>Observações:</strong> ${paciente.observacoes || 'Nenhuma'}</p>
+                    <p><strong>Senha:</strong> ${paciente.senha}</p>
+                    <p><strong>Data do Cadastro:</strong> ${paciente.dataCadastro}</p>
+                `;
+                lista.appendChild(div);
+            });
+        } else {
+            lista.innerHTML = "<p>Nenhum paciente cadastrado até o momento.</p>";
+        }
+
+        // Função para limpar pacientes
+        function limparPacientes() {
+            localStorage.removeItem('historicoPacientes'); // Remove os dados armazenados
+            lista.innerHTML = "<p>Nenhum paciente cadastrado até o momento.</p>"; // Atualiza a exibição
+            alert("Todos os pacientes foram removidos!");
+        }
+    </script>
+
+</body>
+
+</html>

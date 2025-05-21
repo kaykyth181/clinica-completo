@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro de Pacientes Saúde +</title>
+
+    <!-- fontes -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Winky+Rough:ital,wght@0,300..900;1,300..900&display=swap"
+        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Special+Gothic+Condensed+One&display=swap" rel="stylesheet">
+
+    <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon">
+
+    <style>
+        :root {
+            --cor-primaria: #00b7ff;
+            --cor-secundaria: rgb(31, 140, 204);
+            --cor-terciaria: #015374;
+            --cor-destaque: rgb(18, 99, 22);
+            --cor-fonte: #333333;
+            --cor-fundo: #f4f4f9;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: var(--cor-fundo);
+            color: var(--cor-fonte);
+            margin: 0;
+            padding: 0;
+        }
+
+        html, body {
+            max-width: 100%;
+            overflow-x: hidden;
+        }
+
+        h2, h1 {
+            font-family: "Winky Rough", sans-serif;
+        }
+
+        header {
+            position: relative;
+            background-color: var(--cor-primaria);
+            color: var(--cor-fundo);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 10px 20px;
+        }
+
+        #logo img {
+            width: 150px;
+            transition: transform 0.3s ease;
+        }
+
+        #logo img:hover {
+            transform: scale(1.1);
+            cursor: pointer;
+        }
+
+        .htexto h1,
+        .htexto p {
+            text-align: right;
+        }
+
+        span {
+            color: #f44336;
+        }
+
+        header p {
+            position: relative;
+        }
+
+        main {
+            padding: 20px;
+            max-width: 800px;
+            margin: auto;
+            background-color: var(--cor-fundo);
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h2 {
+            text-align: center;
+            color: rgb(1, 175, 255);
+        }
+
+        label {
+            display: block;
+            margin: 10px 0 5px;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        input[type="number"],
+        textarea,
+        select {
+            width: 100%;
+            padding: 8px;
+            margin: 5px 0 15px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        .form-group {
+            display: flex;
+            gap: 20px;
+        }
+
+        .form-item {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .button-group {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 2rem;
+            flex-wrap: wrap;
+        }
+
+        button {
+            padding: 0.8rem 1.5rem;
+            border: none;
+            border-radius: 5px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            min-width: 120px;
+        }
+
+        button[type="submit"] {
+            background-color: var(--cor-primaria);
+            color: white;
+        }
+
+        button[type="submit"]:hover {
+            background-color: var(--cor-secundaria);
+        }
+
+        .cancel-btn {
+            background-color: #f44336;
+            color: white;
+        }
+
+        .cancel-btn:hover {
+            background-color: #d32f2f;
+        }
+
+        button[type="button"] {
+            background-color: var(--cor-primaria);
+            color: white;
+        }
+
+        button[type="button"]:hover {
+            background-color: var(--cor-secundaria);
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        footer {
+            background-color: var(--cor-fonte);
+            color: white;
+            text-align: center;
+            padding: 10px;
+            width: 100%;
+            bottom: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        @media (max-width: 768px) {
+            .form-group {
+                flex-direction: column;
+                gap: 10px;
+            }
+
+            .form-item {
+                width: 100%;
+            }
+
+            .button-group {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            button {
+                width: 100%;
+                max-width: 250px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <div id="logo">
+            <a href="index.html"><img src="img/logo.png" alt="logo varias cruz"></a>
+        </div>
+        <div class="htexto">
+            <h1>Cadastro Paciente Hospital <span>Saúde +</span></h1>
+            <p>Preencha as informações abaixo para cadastrar um novo paciente na rede hospitalar.</p>
+        </div>
+    </header>
+
+    <main>
+        <h2>Formulário de Cadastro</h2>
+        <form id="patientForm">
+            <!-- Nome -->
+            <div class="form-item"><label for="nome">Nome Completo:</label>
+                <input type="text" id="nome" name="nome" required>
+            </div>
+
+            <div class="form-group">
+                <div class="form-item">
+                    <label for="idade">Idade:</label>
+                    <input type="number" id="idade" name="idade" required min="0" max="120">
+                </div>
+
+                <div class="form-item">
+                    <label for="sexo">Sexo:</label>
+                    <select id="sexo" name="sexo" required>
+                        <option value="" disabled selected>Selecione</option>
+                        <option value="masculino">Masculino</option>
+                        <option value="feminino">Feminino</option>
+                        <option value="outro">Outro</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="form-item">
+                    <label for="endereco">Endereço:</label>
+                    <input type="text" id="endereco" name="endereco" required>
+                </div>
+
+                <div class="form-item">
+                    <label for="cep">CEP:</label>
+                    <input type="text" id="cep" name="cep" required pattern="\d{5}-?\d{3}" placeholder="12345-678">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="form-item">
+                    <!-- Telefone -->
+                    <label for="telefone">Telefone:</label>
+                    <input type="text" id="telefone" name="telefone" required pattern="\(?\d{2}\)?[\s-]?\d{4,5}[\s-]?\d{4}" placeholder="(99) 99999-9999">
+                </div>
+
+                <div class="form-item">
+                    <!-- E-mail -->
+                    <label for="email">E-mail:</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+            </div>
+
+            <!-- Serviços -->
+            <label for="servico">Serviço Desejado:</label>
+            <select id="servico" name="servico" required>
+                <option value="" disabled selected>Selecione</option>
+                <option value="consulta-medica">Consulta Médica</option>
+                <option value="exame-laboratorial">Exame Laboratorial</option>
+                <option value="acompanhamento-nutricional">Acompanhamento Nutricional</option>
+                <option value="checkup-preventivo">Check-up Preventivo</option>
+                <option value="outro">Outro</option>
+            </select>
+
+            <!-- Observações -->
+            <label for="observacoes">Observações:</label>
+            <textarea id="observacoes" name="observacoes" rows="4"
+                placeholder="Alguma observação sobre o paciente?"></textarea>
+
+            <!-- Botões -->
+            <div class="button-group">
+                <button type="submit">Cadastrar Paciente</button>
+                <button type="reset" class="cancel-btn">Limpar Formulário</button>
+                <button type="button" onclick="window.history.back()">Voltar</button>
+                <button type="button"><a href="pacientes.html">Ver Cadastros</a></button>
+            </div>
+        </form>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 Saúde +</p>
+    </footer>
+
+    <script>
+        document.getElementById('patientForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Coletar todos os dados do formulário
+            const novoPaciente = {
+                nome: document.getElementById('nome').value.trim(),
+                idade: document.getElementById('idade').value,
+                sexo: document.getElementById('sexo').value,
+                endereco: document.getElementById('endereco').value.trim(),
+                cep: document.getElementById('cep').value.replace(/\D/g, ''),
+                telefone: document.getElementById('telefone').value.replace(/\D/g, ''),
+                email: document.getElementById('email').value.trim().toLowerCase(),
+                servico: document.getElementById('servico').value,
+                observacoes: document.getElementById('observacoes').value.trim(),
+                senha: Math.floor(Math.random() * 1000).toString().padStart(3, '0'),
+                dataCadastro: new Date().toLocaleString('pt-BR')
+            };
+
+            // Validação adicional
+            if (novoPaciente.idade < 0 || novoPaciente.idade > 120) {
+                alert('Por favor, insira uma idade válida (0-120)');
+                return;
+            }
+
+            // Verificar se existe um paciente com TODOS os dados principais iguais
+            const historico = JSON.parse(localStorage.getItem('historicoPacientes')) || [];
+            
+            // Campos que serão comparados (ignorando senha, dataCadastro e observações)
+            const camposComparacao = ['nome', 'idade', 'sexo', 'endereco', 'cep', 'telefone', 'email', 'servico'];
+            
+            const pacienteExistente = historico.find(paciente => {
+                return camposComparacao.every(key => {
+                    return paciente[key] === novoPaciente[key];
+                });
+            });
+
+            if (pacienteExistente) {
+                alert('Paciente com todos os dados idênticos já cadastrado!');
+                return;
+            }
+
+            // Adicionar ao histórico e salvar como último paciente
+            historico.push(novoPaciente);
+            localStorage.setItem('historicoPacientes', JSON.stringify(historico));
+            localStorage.setItem('ultimoPaciente', JSON.stringify(novoPaciente));
+
+            // Redirecionar para a ficha
+            window.location.href = 'ficha.html';
+        });
+
+        // Máscara para CEP
+        document.getElementById('cep').addEventListener('input', function(e) {
+            let value = e.target.value.replace(/\D/g, '');
+            if (value.length > 5) {
+                value = value.substring(0,5) + '-' + value.substring(5,8);
+            }
+            e.target.value = value;
+        });
+
+        // Máscara para telefone
+        document.getElementById('telefone').addEventListener('input', function(e) {
+            let value = e.target.value.replace(/\D/g, '');
+            if (value.length > 0) {
+                value = '(' + value.substring(0,2) + ') ' + value.substring(2);
+            }
+            if (value.length > 10) {
+                value = value.substring(0,10) + '-' + value.substring(10,14);
+            }
+            e.target.value = value;
+        });
+    </script>
+</body>
+</html>
